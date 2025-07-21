@@ -1,24 +1,34 @@
+import { createEducationBlock } from './blocks/education/education'
+import { createExperienceBlock } from './blocks/experience/experience'
+import { createFeedback } from './blocks/feedback/feedback'
+import { createInterestsBlock } from './blocks/interests/interests'
+import { createLanguagesBlock } from './blocks/languages/languages'
+import { createProfileInfoBlock } from './blocks/profileInfo/profileInfo'
+import { createProfilePhotoBlock } from './blocks/profilePhoto/profilePhoto'
+import { createToolsBlock } from './blocks/tools/tools'
+import { initAnimations } from './animation'
+
+import '../vendor/normalize.css'
+import '../vendor/fonts.css'
 import '../css/style.css'
-import javascriptLogo from '../javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import { saveEdits } from './saveEdits'
+import { initSaveAsPDF, saveAsPDF } from './blocks/saveAsPDF/saveAsPDF'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+document.querySelector('#app').innerHTML = [
+  saveAsPDF(),
+  createProfilePhotoBlock(),
+  createProfileInfoBlock(),
+  createLanguagesBlock(),
+  createExperienceBlock(),
+  createToolsBlock(),
+  createEducationBlock(),
+  createInterestsBlock(),
+  createFeedback()
+].join('\n')
 
-setupCounter(document.querySelector('#counter'))
+saveEdits()
+initSaveAsPDF('#save-pdf')
+
+document.addEventListener('DOMContentLoaded', () => {
+  initAnimations()
+})

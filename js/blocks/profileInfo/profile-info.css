@@ -1,0 +1,27 @@
+.profile-info {
+    grid-area: 1 / 2 / 2 / 3;
+    justify-content: space-between;
+}
+
+.profile-description {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 104%;
+}
+
+.profile-job {
+    font-size: 12px;
+    font-weight: 500;
+    color: #5c5c5c;
+}
+
+@media screen and (width < 600px) {
+    .profile-info {
+        grid-area: 1 / 3 / 2 / 5;
+    }
+}

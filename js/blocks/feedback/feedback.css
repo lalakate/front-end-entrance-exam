@@ -1,0 +1,14 @@
+.feedback {
+    grid-area: 4 / 3 / 5 / 5;
+    justify-content: space-between;
+}
+
+.feedback-way {
+    color: #dddddd;
+}
+
+@media screen and (width < 600px) {
+    .feedback {
+        grid-area: 7 / 1 / 8 / 5;
+    }
+}

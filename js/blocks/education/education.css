@@ -1,0 +1,52 @@
+.educations {
+    grid-area: 3 / 1 / 5 / 3;
+}
+
+.educations-list {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.education-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 8px;
+    gap: 8px;
+    background-color: var(--education-item-bg, #fff);
+    color: var(--education-item-color, #000);
+    width: calc(50% - 12px);
+    height: min-content;
+}
+
+.education-item:first-of-type {
+    --education-item-bg: #28D979;
+    --education-item-color: #fff;
+    --education-item-tags: #ebf9f2;
+}
+
+.education-item-tags {
+    display: inline-flex;
+    column-gap: 4px;
+    flex-wrap: wrap;
+}
+
+.tag {
+  transition: background-color 0.2s ease, color 0.2s ease-in-out;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+.tag:hover {
+  background-color: rgba(40, 217, 121, 0.8);
+  color: black;
+  border-radius: 4px;
+}
+
+@media screen and (width < 600px) {
+    .educations {
+        grid-area: 5 / 1 / 6 / 5;
+    }
+}

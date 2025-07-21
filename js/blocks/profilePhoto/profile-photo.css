@@ -1,0 +1,12 @@
+.profile-photo {
+    grid-area: 1 / 1 / 2 / 2;
+    width: 126px;
+    height: 126px;
+    border-radius: 12px;
+}
+
+@media screen and (width < 600px) {
+    .profile-photo {
+        grid-area: 1 / 1 / 2 / 3;
+    }
+}

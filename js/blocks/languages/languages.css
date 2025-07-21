@@ -1,0 +1,30 @@
+.languages {
+    grid-area: 1 / 3 / 2 / 5;
+    --language-level: 100%
+}
+
+.languages-list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.language-label {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 17px;
+    align-items: center;
+}
+
+.language-level-bar {
+    height: 11px;
+    border-radius: 3px;
+    width: var(--language-level, 100%);
+    justify-self: start;
+}
+
+@media screen and (width < 600px) {
+    .languages {
+        grid-area: 2 / 1 / 3 / 5;
+    }
+}
