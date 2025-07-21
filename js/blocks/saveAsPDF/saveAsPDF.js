@@ -37,7 +37,6 @@ function applyDesktopLayout() {
   const style = document.createElement('style')
   style.id = 'temp-pdf-styles'
   style.textContent = `
-    /* Основная сетка как на десктопе */
     .profile-photo {
       grid-area: 1 / 1 / 2 / 2 !important;
       max-width: 126px !important;
@@ -55,7 +54,6 @@ function applyDesktopLayout() {
       grid-area: 1 / 3 / 2 / 5 !important;
     }
     
-    /* Правильный селектор для опыта */
     .experiences {
       grid-area: 2 / 1 / 3 / 4 !important;
     }
@@ -65,7 +63,6 @@ function applyDesktopLayout() {
       padding-bottom: 0 !important;
     }
     
-    /* Правильный селектор для образования */
     .educations {
       grid-area: 3 / 1 / 5 / 3 !important;
     }
@@ -118,7 +115,6 @@ function applyDesktopLayout() {
       justify-self: start !important;
     }
     
-    /* Типографика в оригинальных размерах */
     h1 { font-size: 24px !important; line-height: 1.2 !important; font-weight: 600 !important; }
     h2 { font-size: 14px !important; line-height: 1.5 !important; font-weight: 500 !important; }
     h3 { font-size: 10px !important; line-height: 1.5 !important; font-weight: 500 !important; }
@@ -149,7 +145,6 @@ function applyDesktopLayout() {
       background-color: #28d979 !important;
     }
     
-    /* Образование в 2 колонки */
     .education-item {
       display: flex !important;
       flex-direction: column !important;
@@ -169,7 +164,6 @@ function applyDesktopLayout() {
       justify-content: space-between !important;
     }
     
-    /* Опыт работы */
     .experience-list {
       display: flex !important;
       flex-direction: column !important;
@@ -192,7 +186,6 @@ function applyDesktopLayout() {
       grid-column-gap: 8px !important;
     }
     
-    /* Интересы */
     .interests-list {
       display: flex !important;
       gap: 8px !important;
@@ -221,7 +214,6 @@ function applyDesktopLayout() {
       font-weight: 500 !important;
     }
 
-    /* Переопределяем медиа-запросы */
     @media screen and (max-width: 1200px) {
       #app {
         display: grid !important;
@@ -280,7 +272,7 @@ export function initSaveAsPDF(selector) {
           scale: 2,
           useCORS: true,
           allowTaint: true,
-          width: 580,
+          width: 595,
           backgroundColor: '#ffffff'
         })
 
@@ -289,17 +281,23 @@ export function initSaveAsPDF(selector) {
 
         const pdfWidth = 210
         const pdfHeight = 297
-        const imgWidth = pdfWidth - 20
-        const imgHeight = (canvas.height * imgWidth) / canvas.width
+        const canvasAspectRatio = canvas.width / canvas.height
+        const pdfAspectRatio = pdfWidth / pdfHeight
 
-        if (imgHeight <= pdfHeight - 20) {
-          const yPosition = (pdfHeight - imgHeight) / 2
-          pdf.addImage(imgData, 'PNG', 10, yPosition, imgWidth, imgHeight)
+        let imgWidth, imgHeight
+
+        if (canvasAspectRatio > pdfAspectRatio) {
+          imgWidth = pdfWidth
+          imgHeight = pdfWidth / canvasAspectRatio
         } else {
-          const scaledHeight = pdfHeight - 20
-          const scaledWidth = (canvas.width * scaledHeight) / canvas.height
-          pdf.addImage(imgData, 'PNG', 10, 10, scaledWidth, scaledHeight)
+          imgHeight = pdfHeight
+          imgWidth = pdfHeight * canvasAspectRatio
         }
+
+        const xOffset = (pdfWidth - imgWidth) / 2
+        const yOffset = (pdfHeight - imgHeight) / 2
+
+        pdf.addImage(imgData, 'PNG', xOffset, yOffset, imgWidth, imgHeight)
 
         const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-')
         pdf.save(`resume-${timestamp}.pdf`)
