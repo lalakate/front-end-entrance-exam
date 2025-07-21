@@ -24,6 +24,23 @@
     --experience-item-description-color: #fff;
 }
 
+.experience-item:first-of-type::before {
+    content: 'most recent';
+    width: 61px;
+    height: 16px;
+    background-color: #7E731266;
+    color: #DDF163;
+    border-radius: 59px;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: center;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+}
+
 .experience-item-content {
     display: grid;
     grid-template-columns: 1fr 2fr;

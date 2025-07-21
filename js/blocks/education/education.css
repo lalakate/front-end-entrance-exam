@@ -27,6 +27,19 @@
     --education-item-tags: #ebf9f2;
 }
 
+.education-item:first-of-type::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 11px;
+    height: 11px;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAxMSAxMSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIuNzUgMC44MDczNzNDMS45OTM3NSAwLjgwNzM3MyAxLjMyIDEuMTIzODggMC44MTEyNSAxLjYxOTI5QzAuMzE2MjUgMi4xMTQ3IDAgMi43ODkwMSAwIDMuNTU5NjVDMCA0LjMxNjUzIDAuMzE2MjUgNC45OTA4MyAwLjgxMTI1IDUuNUw1LjUgMTAuMTkyNkwxMC4xODg3IDUuNUMxMC42ODM4IDUuMDA0NiAxMSA0LjMzMDI5IDExIDMuNTU5NjVDMTEgMi44MDI3NyAxMC42ODM4IDIuMTI4NDcgMTAuMTg4NyAxLjYxOTI5QzkuNjkzNzUgMS4xMjM4OCA5LjAyIDEuODA3MzczIDguMjUgMC44MDczNzNDNy40OTM3NSAwLjgwNzM3MyA2LjgyIDEuMTIzODggNi4zMTEyNSAxLjYxOTI5QzUuODE2MjUgMi4xMTQ3IDUuNSAyLjc4OTAxIDUuNSAzLjU1OTY1QzUuNSAyLjgwMjc3IDUuMTgzNzUgMi4xMjg0NyA0LjY4ODc1IDEuNjE5MjlDNC4xOTM3NSAxLjEyMzg4IDMuNTIgMC44MDczNzMgMi43NSAwLjgwNzM3M1oiIGZpbGw9IiNGNkVEMUUiLz4KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 1;
+}
+
 .education-item-tags {
     display: inline-flex;
     column-gap: 4px;
