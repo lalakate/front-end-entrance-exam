@@ -260,6 +260,7 @@ export function initSaveAsPDF(selector) {
   if (button) {
     button.addEventListener('click', async () => {
       let desktopLayout = null
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
       try {
         desktopLayout = applyDesktopLayout()
@@ -300,7 +301,27 @@ export function initSaveAsPDF(selector) {
         pdf.addImage(imgData, 'PNG', xOffset, yOffset, imgWidth, imgHeight)
 
         const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-')
-        pdf.save(`resume-${timestamp}.pdf`)
+        const filename = `resume-${timestamp}.pdf` // Объявляем переменную filename
+
+        if (isTouchDevice) {
+          const pdfBlob = pdf.output('blob')
+          const url = URL.createObjectURL(pdfBlob)
+
+          const downloadLink = document.createElement('a')
+          downloadLink.href = url
+          downloadLink.download = filename
+          downloadLink.style.display = 'none'
+
+          document.body.appendChild(downloadLink)
+          downloadLink.click()
+          document.body.removeChild(downloadLink)
+
+          // Освобождаем память
+          setTimeout(() => URL.revokeObjectURL(url), 1000)
+        } else {
+          // Для десктопа используем стандартный метод
+          pdf.save(filename)
+        }
 
       } catch (error) {
         console.error('Error generating PDF:', error)
